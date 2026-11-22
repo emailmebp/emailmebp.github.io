@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Get Sparklecorn</title>
+<!-- The QR code on every Sparklecorn coloring page opens this page (SCRUM-113).
+     iPhone and iPad go straight to the App Store. Android sees the coming-soon line
+     until PLAY_STORE is filled in. A computer sees the App Store link.
+     No tracking, no outside services, nothing collected. -->
+<style>
+  :root { color-scheme: light dark; --ink: #2a1a40; --soft: #5d4d7d; --bg: #fff8fc; --accent: #c2307e; --line: #ead9f0; }
+  @media (prefers-color-scheme: dark) { :root { --ink: #f6eddc; --soft: #c3b6d6; --bg: #1a1426; --accent: #ff9fd0; --line: #3d3050; } }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 17px/1.55 -apple-system, system-ui, "Segoe UI", sans-serif; }
+  main { max-width: 520px; margin: 0 auto; padding: 48px 16px 56px; text-align: center; }
+  h1 { font-size: 30px; line-height: 1.15; margin: 0 0 10px; }
+  p { margin: 0 0 14px; }
+  .soft { color: var(--soft); }
+  .button { display: inline-block; margin-top: 8px; padding: 14px 24px; border-radius: 999px; background: var(--accent); color: #fff; font-weight: 600; text-decoration: none; }
+  #android { display: none; border: 1px solid var(--line); border-radius: 14px; padding: 16px; margin-bottom: 20px; }
+</style>
+<script>
+  var APP_STORE = "https://apps.apple.com/app/id6828370872";
+  var PLAY_STORE = "";  // When Android ships: put the Google Play link here. Nothing else changes.
+  var ua = navigator.userAgent || "";
+  var apple = /iPhone|iPad|iPod/.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1);
+  var android = /Android/i.test(ua);
+  if (apple) location.replace(APP_STORE);
+  else if (android && PLAY_STORE) location.replace(PLAY_STORE);
+</script>
+</head>
+<body>
+<main>
+  <div id="android">
+    <h1>Sparklecorn is on iPhone and iPad for now.</h1>
+    <p>Android is coming soon!</p>
+  </div>
+  <h1 id="title">Sparklecorn</h1>
+  <p class="soft">Unicorn adventures &amp; coloring, free on iPhone and iPad.</p>
+  <p><a class="button" href="https://apps.apple.com/app/id6828370872">Get it on the App Store</a></p>
+</main>
+<script>
+  if (android && !PLAY_STORE) {
+    document.getElementById("android").style.display = "block";
+    document.getElementById("title").style.display = "none";
+  }
+</script>
+</body>
+</html>
